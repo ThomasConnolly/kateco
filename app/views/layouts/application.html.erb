@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= @title || "Kateco" %></title>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
@@ -10,29 +10,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="wrap">
+<div class="page">
+  
     <header>
-      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/header' %>
     </header>
-      
-    <div class="container">
+ <div class="container-fluid">
        
-      <div class="row">
+      <div class="row-fluid">
         <div class="col-sm-6 col-sm-offset-3 text-center">
           <%= render 'layouts/messages' %>
         </div>
       </div>
+  <%= yield %>
       
-      <div class="row">
-        <div class="col-sm-12">
-          <%= yield %>
-        </div>     
-      </div>  
+ 
       
     </div>
-  </div>
+ 
     
   <%= render 'layouts/footer' %>    
-
+</div>
 </body>
 </html>
