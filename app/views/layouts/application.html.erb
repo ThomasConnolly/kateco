@@ -10,22 +10,15 @@
     <%= csrf_meta_tags %>
     <meta name="google-site-verification" content="FKZjoLcPXo7UAFGevNN6dQWAXHaNXgykNTtdxQ_2fY0" />
 </head>
-
 <body>
 <div class="page">
-<div class="container-fluid">
-<div class="row-fluid">
-  <header>
+  <div class="container-fluid">
+    <div class="row-fluid">
     <%= render 'layouts/header' %>
-  </header>
-  </div>
-  <div class="clearall"></div>
-  
- 
+    </div>
   <%= yield %>
   <%= render 'layouts/footer' %>    
   </div>
 </div>
-
 </body>
 </html>
