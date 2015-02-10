@@ -1,24 +1,13 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, only: [
-    :inside
-  ]
-
+  
   def home
   end
   
-  def inside
+  def about
   end
   
-def posts
-    @posts = Post.published.page(params[:page]).per(10)
-  end
-  
-  def show_post
-    @post = Post.friendly.find(params[:id])
-  rescue
-    redirect_to root_path
-  end
- 
+def contact
+    
   
   def email
     @name = params[:name]
@@ -42,5 +31,5 @@ def posts
       redirect_to root_path, notice: "Your message was sent. Thank you."
     end
   end
-  
+  end
 end
