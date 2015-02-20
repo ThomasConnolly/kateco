@@ -21,7 +21,7 @@ def contact
       flash[:alert] = "You must provide a valid email address before sending your message. Thank you."
       render :contact
     elsif @message.blank? || @message.length < 10
-      flash[:alert] = "Your message is empty. Requires at least 10 characters. Nothing to send."
+      flash[:alert] = "Your message is empty.  Nothing to send."
       render :contact
     elsif @message.scan(/<a href=/).size > 0 || @message.scan(/\[url=/).size > 0 || @message.scan(/\[link=/).size > 0 || @message.scan(/http:\/\//).size > 0
       flash[:alert] = "You can't send links. Thank you for your understanding."
