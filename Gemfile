@@ -14,7 +14,7 @@ gem 'font-awesome-sass', '4.2.2'
 # Bootstrap 3: https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass'
 gem 'pg'
-#gem 'mail_form'
+gem 'mail_form'
 gem 'simple_form'
 
 group :development, :test do
