@@ -1,5 +1,6 @@
 Kateco::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  Rails.application.routes.default_url_options[:host] = 'katecomarketing.herokuapp.com'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -78,18 +79,17 @@ Kateco::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   
-  # Mailer
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => ENV["DOMAIN"] }
+  config.action_mailer.default_url_options = { :host => 'katecomarketing.herokuapp.com'}
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-    address: ENV["SMTP_SERVER"],
-    openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
-    port: ENV["SMTP_PORT"].to_i,
-    domain: ENV["MAILER_DOMAIN"],
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: ENV["GMAIL_DOMAIN"],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["SMTP_USER"],
-    password: ENV["SMTP_PWD"]
-  }
-end
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
+}
