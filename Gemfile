@@ -17,7 +17,9 @@ gem 'pg'
 gem 'mail'
 gem 'mail_form'
 gem 'simple_form'
-
+gem 'rest-client', '~> 1.7.3'
+gem 'mailgun-ruby'
+gem 'foreman'
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
