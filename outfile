@@ -1,0 +1,856 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: clients; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE clients (
+    id integer NOT NULL,
+    company_name character varying,
+    contact_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.clients OWNER TO tom;
+
+--
+-- Name: clients_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE clients_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.clients_id_seq OWNER TO tom;
+
+--
+-- Name: clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
+
+
+--
+-- Name: contacts; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE contacts (
+    id integer NOT NULL,
+    name character varying,
+    email character varying,
+    phone character varying,
+    note_id integer,
+    supplier_id integer,
+    client_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.contacts OWNER TO tom;
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE contacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contacts_id_seq OWNER TO tom;
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE contacts_id_seq OWNED BY contacts.id;
+
+
+--
+-- Name: customers; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE customers (
+    id integer NOT NULL,
+    name character varying,
+    email character varying,
+    address character varying,
+    phone character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.customers OWNER TO tom;
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE customers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.customers_id_seq OWNER TO tom;
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE customers_id_seq OWNED BY customers.id;
+
+
+--
+-- Name: factory_contacts; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE factory_contacts (
+    id integer NOT NULL,
+    first_contact character varying,
+    second_contact character varying,
+    third_contact character varying,
+    manufacturer_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.factory_contacts OWNER TO tom;
+
+--
+-- Name: factory_contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE factory_contacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.factory_contacts_id_seq OWNER TO tom;
+
+--
+-- Name: factory_contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE factory_contacts_id_seq OWNED BY factory_contacts.id;
+
+
+--
+-- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE friendly_id_slugs (
+    id integer NOT NULL,
+    slug character varying NOT NULL,
+    sluggable_id integer NOT NULL,
+    sluggable_type character varying(50),
+    scope character varying,
+    created_at timestamp without time zone
+);
+
+
+ALTER TABLE public.friendly_id_slugs OWNER TO tom;
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE friendly_id_slugs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.friendly_id_slugs_id_seq OWNER TO tom;
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
+
+
+--
+-- Name: manufacturers; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE manufacturers (
+    id integer NOT NULL,
+    name character varying,
+    summary text,
+    composite_url character varying,
+    logo_url character varying,
+    company_url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.manufacturers OWNER TO tom;
+
+--
+-- Name: manufacturers_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE manufacturers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.manufacturers_id_seq OWNER TO tom;
+
+--
+-- Name: manufacturers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE manufacturers_id_seq OWNED BY manufacturers.id;
+
+
+--
+-- Name: notes; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE notes (
+    id integer NOT NULL,
+    title character varying,
+    content text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.notes OWNER TO tom;
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE notes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.notes_id_seq OWNER TO tom;
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE notes_id_seq OWNED BY notes.id;
+
+
+--
+-- Name: posts; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE posts (
+    id integer NOT NULL,
+    title character varying,
+    content_md text,
+    content_html text,
+    draft boolean DEFAULT false,
+    user_id integer,
+    slug character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.posts OWNER TO tom;
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.posts_id_seq OWNER TO tom;
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE posts_id_seq OWNED BY posts.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO tom;
+
+--
+-- Name: suppliers; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE suppliers (
+    id integer NOT NULL,
+    name character varying,
+    address character varying,
+    url character varying,
+    contact_id integer,
+    note_id character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.suppliers OWNER TO tom;
+
+--
+-- Name: suppliers_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE suppliers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.suppliers_id_seq OWNER TO tom;
+
+--
+-- Name: suppliers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE suppliers_id_seq OWNED BY suppliers.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    username character varying DEFAULT ''::character varying NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    admin boolean DEFAULT false NOT NULL,
+    locked boolean DEFAULT false NOT NULL,
+    slug character varying,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    unconfirmed_email character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.users OWNER TO tom;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO tom;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY clients ALTER COLUMN id SET DEFAULT nextval('clients_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN id SET DEFAULT nextval('contacts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY customers ALTER COLUMN id SET DEFAULT nextval('customers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY factory_contacts ALTER COLUMN id SET DEFAULT nextval('factory_contacts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('friendly_id_slugs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY manufacturers ALTER COLUMN id SET DEFAULT nextval('manufacturers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY notes ALTER COLUMN id SET DEFAULT nextval('notes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY suppliers ALTER COLUMN id SET DEFAULT nextval('suppliers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY clients (id, company_name, contact_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('clients_id_seq', 1, false);
+
+
+--
+-- Data for Name: contacts; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY contacts (id, name, email, phone, note_id, supplier_id, client_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('contacts_id_seq', 1, false);
+
+
+--
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY customers (id, name, email, address, phone, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('customers_id_seq', 1, false);
+
+
+--
+-- Data for Name: factory_contacts; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY factory_contacts (id, first_contact, second_contact, third_contact, manufacturer_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: factory_contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('factory_contacts_id_seq', 1, false);
+
+
+--
+-- Data for Name: friendly_id_slugs; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY friendly_id_slugs (id, slug, sluggable_id, sluggable_type, scope, created_at) FROM stdin;
+\.
+
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('friendly_id_slugs_id_seq', 1, false);
+
+
+--
+-- Data for Name: manufacturers; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY manufacturers (id, name, summary, composite_url, logo_url, company_url, created_at, updated_at) FROM stdin;
+1	Peerless Umbrella	A full-service manufacturer of quality umbrellas, tents, folding chairs and more, this family-owned business has been a manufacturer of traditional, as well as fashion umbrellas for three generations. Today, Peerless is a leader in umbrella technology and the largest umbrella company in the promotional products industry. Peerless Umbrella has been the winner of the Counselor's Distributor Choice Award for nine years running, and earned an A rating on SAGE	http://goo.gl/gOCG6q?gdriveurl	http://goo.gl/at6FZ3?gdriveurl	http://peerlessumbrella.com	2015-03-16 22:16:15.027503	2015-03-16 22:16:15.027503
+7	CFS Promotions	<p>Supplier of innovative promotional products to the advertising specialty industry, CFS is dedicated to providing quality products and outstanding service at a competitive price.</p>\r\n       <p>CFS' products are designed to achieve the brand's marketing objectives and ROI goals by appealing to a broad demographic spectrum and being structured to meet budget.</p><p>Now offering phone cases, power banks, wall chargers, rechargeable auto flashlights, USB auto chargers.</p><p>\r\n       CFS Promo is a 5-star supplier with ASI, and has earned an A rating with SAGE. </p>	http://goo.gl/BuubfY?gdriveurl	http://goo.gl/9VNGww?gdriveurl	http://www.cfspromo.net	2015-03-16 22:36:07.563774	2015-03-16 22:36:07.563774
+11	Trust-Tee	No more lost balls and loads more distance! What more could a golfer want? Trust-Tee makes a tee that promises to \r\nreduce hooks and slices, Guarantee. Ten years in development and seven Years Patent approval . The only golf tee in the world that reduces your hook & slice. A great inexpensive gift with your company's logo.	http://goo.gl/QbKvQ1?gdriveurl	http://goo.gl/I2ckLw?gdriveurl	http://www.trust-tee.com	2015-03-16 22:55:30.389911	2015-03-16 22:55:30.389911
+9	Kutmaster	<p> Kutmaster has been specializing in cutlery for more than 100 years. We have a large variety of knives which includes pocket knives, multitools, kitchen cutlery, flatware and even restaurant-style steak knives. We can laser engrave, electro etch or pad print on our products. Knives and Cutlery are great for giveaways, corporate gifts and incentive programs. There are many markets that buy knives as they are a promotion that last forever! </p><p>\r\n      KutMaster has earned and A+ rating on SAGE.</p>	http://goo.gl/ARf4wA?gdriveurl	http://goo.gl/7lTJuL?gdriveurl	http://www.kutmasterpromo.com	2015-03-16 22:40:41.241041	2015-03-16 22:40:41.241041
+4	GoodHope Bags	<p>GoodHope Bags has more than 30 years experience bringing your ideas to life. A vast on-hand inventory and direct import from overseas give us two ways to serve our customer with innovative ideas. GoodHope Bags is committed to providing our customers with diverse products that meet the highest standards.</p><p>GoodHope Bags is a finalist in the bag category for Counselor's Distributor Choice Award for 2015.</p>	http://goo.gl/kXSLhO?gdriveurl	http://goo.gl/N70VB5?gdriveurl	http://www.goodhopebags.com	2015-03-16 22:28:02.562537	2015-03-16 22:28:02.562537
+5	Notes	<p> Notes, Inc. for Stik-Withit® repositionable adhesive products, all of them custom manufactured to their exacting specifications.  Manufacturing its products from scratch instead of simply imprinting stock items off the shelf is one way Notes, Inc. sets itself apart from other advertising specialty suppliers and what differentiates us from our competitors.  It allows us to say, without hesitation, “On time or Free!” </p><p>\r\n    Notes Inc. is a top rated supplier in the promotional industry and earned an A rating on SAGE.</p>	http://goo.gl/cmf1QU?gdriveurl	http://goo.gl/Kzw6Tn?gdriveurl	http://notesincusa.com	2015-03-16 22:31:43.329354	2015-03-16 22:31:43.329354
+3	Maple Ridge Farms	<p> Founded in 1979, Maple Ridge Farms is the largest company in America specializing in corporate food gift programs. We have built our business on one, fundamental principle: Your gifts should be recognized for their outstanding quality and exceptional flavor! We guarantee that every gift is one that you will be proud to give (and would be happy to receive).</p>\r\n\r\n      <p>Our quality is quite simply the best. We ship on-time and have the best guarantee in the business. Maple Ridge Farms is a 5-star supplier with ASI, has been named Top Food Gift Company for 14 years in a row, and earned an A+ rating on SAGE</p>	http://goo.gl/2zIqIp?gdriveurl	http://goo.gl/XzcA7i?gdriveurl	http://www.mapleridge.com	2015-03-16 22:26:09.846015	2015-03-16 22:26:09.846015
+6	Wow Line	<p> With a 5-star rating on ASI and an A rating on Sage, we are proud of our efforts in serving our customers and supplying quality promotional items. But, it doesn’t stop there! We have expanded our printing operations to ensure faster service and more printing options. Our distributor partners demand first-class quality and service and we are committed to “Raising the Bar!” in 2015!</p>\r\n      <p>Always the first place to look for FUN promotional items.</p>	http://goo.gl/95m1nG?gdriveurl	http://goo.gl/nQtsXH?gdriveurl	http://www.wowline.com	2015-03-16 22:33:37.459381	2015-03-16 22:33:37.459381
+8	Cedar Crest Manufacturing	<p>Though new as a company, the managemnt and workforce at Cedar Crest Manufacturing have years of experience making promotional writing instruments. We value close partnerships with our customers and understand the need to provide the highest levels of customer service through ease of doing business, prompt order deliveries and unique, quality, safety-compliant products. Flash turnaround available.</p><p>\r\n      Cedar Crest Mfg is a 5-star supplier with ASI, and has earned an A+ rating on SAGE.</p>	http://goo.gl/OjyFDC?gdriveurl	http://goo.gl/e0pUDM?gdriveurl	http://www.cedarcrestmfg.com	2015-03-16 22:38:51.973725	2015-03-16 22:38:51.973725
+10	JAM Design Inc.	 <p> JAM Design specializes in promotional items that last&mdash;they're metal. After 10 years in the business founder Marie Van De Mark is proud that her company exceeds customers' expectations in both product and performance. Items such as desk accessories, mementos and medallians can be custom crafted or selected from stock.</p><p>Small jobs, large jobs, the seemingly impossible challenge.\r\n      We handle every detail from conception to completion, and\r\n      hand-deliver it at a competitive price.</p>	http://goo.gl/G5ZnEU?gdriveurl	http://goo.gl/cW3ztt?gdriveurl	http://www.jamdesigninc.com	2015-03-16 22:42:46.935376	2015-03-16 22:42:46.935376
+\.
+
+
+--
+-- Name: manufacturers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('manufacturers_id_seq', 11, true);
+
+
+--
+-- Data for Name: notes; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY notes (id, title, content, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('notes_id_seq', 1, false);
+
+
+--
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY posts (id, title, content_md, content_html, draft, user_id, slug, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('posts_id_seq', 1, false);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY schema_migrations (version) FROM stdin;
+20150112180548
+20150112175728
+20131103142222
+20150112175311
+20150109160627
+20141010133701
+20141010133702
+20150316211250
+20150316212239
+20150316212641
+\.
+
+
+--
+-- Data for Name: suppliers; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY suppliers (id, name, address, url, contact_id, note_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: suppliers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('suppliers_id_seq', 1, false);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY users (id, username, email, encrypted_password, admin, locked, slug, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('users_id_seq', 1, false);
+
+
+--
+-- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY clients
+    ADD CONSTRAINT clients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY contacts
+    ADD CONSTRAINT contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: customers_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: factory_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY factory_contacts
+    ADD CONSTRAINT factory_contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY friendly_id_slugs
+    ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: manufacturers_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY manufacturers
+    ADD CONSTRAINT manufacturers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notes_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY notes
+    ADD CONSTRAINT notes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: suppliers_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY suppliers
+    ADD CONSTRAINT suppliers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON friendly_id_slugs USING btree (slug, sluggable_type);
+
+
+--
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope ON friendly_id_slugs USING btree (slug, sluggable_type, scope);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_id ON friendly_id_slugs USING btree (sluggable_id);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USING btree (sluggable_type);
+
+
+--
+-- Name: index_posts_on_user_id; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE INDEX index_posts_on_user_id ON posts USING btree (user_id);
+
+
+--
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_slug ON users USING btree (slug);
+
+
+--
+-- Name: index_users_on_username; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_username ON users USING btree (username);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
