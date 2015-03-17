@@ -1,0 +1,2 @@
+class FactoryContactsController < ApplicationController
+end

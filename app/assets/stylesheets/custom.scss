@@ -34,6 +34,22 @@ background: linear-gradient(to bottom, #f2eddf 0%,#775749 100%); /* W3C */
 width: 100%;
 height: 160px;
 }
+.left-side {
+  width: 47%;
+  float: left;
+  }
+.right-side {
+  width: 47%;
+  float: right;
+}  
+.product-pix {
+  width: 60%;
+  margin: 5px;
+}
+.product-txt {
+  width: 40%;
+  margin:12px;
+}
 a:link {
   color: #775749; 
   text-decoration: none;  
@@ -80,4 +96,38 @@ hr {
 .voffset40 { margin-top: 40px; }
 .hidden {
   display:none;
+}
+.mfgr-display {
+  width: 48%;
+  height: 500px;
+  padding: 6px;
+  margin: 10px;
+  float:left;
+}
+.mfgr-logo {
+  width: 150px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.mfgr-left {
+  width: 46%;
+  float: left;
+}
+.mfgr-right {
+  width: 48%;
+  float: right;
+}
+
+.center-text {
+  text-align: center;
+}
+.clearall {
+  clear: both;
+}
+.clearright {
+  clear: right;
 }
