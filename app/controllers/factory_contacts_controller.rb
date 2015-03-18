@@ -1,2 +1,0 @@
-class FactoryContactsController < ApplicationController
-end

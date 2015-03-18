@@ -6,6 +6,5 @@ Kateco::Application.routes.draw do
   match '/contacts', to: 'contacts#new', via: 'get'
   resources "contacts", only: [:new, :create]
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
-  resources "factory_contacts"
   resources "customers"
 end
