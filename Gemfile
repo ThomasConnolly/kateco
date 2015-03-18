@@ -21,6 +21,7 @@ gem 'rest-client', '~> 1.7.3'
 gem 'mailgun-ruby'
 gem 'foreman'
 gem 'newrelic_rpm'
+gem 'tunemygc'
 
 
 group :development, :test do
