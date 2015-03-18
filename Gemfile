@@ -20,6 +20,7 @@ gem 'simple_form'
 gem 'rest-client', '~> 1.7.3'
 gem 'mailgun-ruby'
 gem 'foreman'
+gem 'newrelic_rpm'
 
 
 group :development, :test do
