@@ -49,3 +49,41 @@ end
        <p class="center-text"><strong><%= link_to m.company_url %></strong></p>
 </div>
 <% end %>
+
+
+
+<%=simple_form_for @manufacturer do |f| %>
+<%= f.input :name %>
+<%= f.input :summary %>
+<%= f.input :composite_url %>
+<%= f.input :logo_url %>
+<%= f.input :company_url %>
+<%= f.button :submit %>
+<% end %>
+
+
+
+
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 text-center">
+    <h1><br>Helping professionals with their promotional and marketing needs</h1><br>
+  </div>     
+</div>
+<div class="clearall"></div>
+<div class="row-fluid">
+<% @manufacturers.each do |m| %>
+<div class="mfgr-display">
+  <div class="mfgr-left">
+    <%=(image_tag m.logo_url, class: "mfgr-logo") %>
+     
+      <%=(image_tag m.composite_url, width: "250") %>
+  </div>
+  <div class="mfgr-right">
+    <h3><%= m.name %></h3>
+    <p><%= sanitize m.summary %>
+  </div>
+  <div class="clearright"></div>
+       <p class="center-text"><strong><%= link_to m.company_url %></strong></p>
+</div>
+<% end %>
+
