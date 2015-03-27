@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316212641) do
+ActiveRecord::Schema.define(version: 20150327023600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,13 @@ ActiveRecord::Schema.define(version: 20150316212641) do
   create_table "factory_contacts", force: :cascade do |t|
     t.string   "first_contact"
     t.string   "second_contact"
-    t.string   "third_contact"
     t.integer  "manufacturer_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "first_contact_email"
+    t.string   "first_contact_phone"
+    t.string   "second_contact_email"
+    t.string   "second_contact_phone"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
