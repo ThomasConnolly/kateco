@@ -13,7 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap 
+//= require bootstrap-sprockets 
 //= require analytics
 //= require common
-
+//= require responsive
+//= require_tree

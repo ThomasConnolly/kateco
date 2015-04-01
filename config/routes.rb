@@ -1,14 +1,11 @@
 Kateco::Application.routes.draw do
-  
-  resources :factory_contacts
-
+  resources :manufacturers
+  resources :users
   root "pages#home"    
   get "/about", to: "pages#about", as: "about"
-  #get "/contact", to: "pages#contact", as: "contact"
-  match '/contacts', to: 'contacts#new', via: 'get'
-  resources "contacts", only: [:new, :create]
+  get "/contact_us", to: "pages#contact", as: "contact_us"
+  resources "users", only: [:new, :create]
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
-  resources "customers"
-  resources "factory_contacts"
-  resources "manufacturers"
+  
 end
+

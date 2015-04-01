@@ -7,28 +7,35 @@ gem 'sass-rails', '5.0.0'
 gem 'uglifier', '2.6.0'
 gem 'coffee-rails', '4.1.0'
 gem 'jquery-rails', '4.0.2'
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 gem 'turbolinks', '2.5.3'
 gem 'jbuilder', '2.2.6'
 gem 'bcrypt', '3.1.9'
 gem 'font-awesome-sass', '4.2.2'
 # Bootstrap 3: https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass'
+gem 'bootstrap-modal-rails'
 gem 'pg'
 gem 'mail'
 gem 'mail_form'
 gem 'simple_form'
 gem 'rest-client', '~> 1.7.3'
-gem 'mailgun-ruby'
+gem 'mailgun-ruby', require: 'mailgun'
 gem 'foreman'
 gem 'newrelic_rpm'
-gem 'tunemygc'
+#gem 'tunemygc'
+gem 'figaro'
 
 
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'figaro', '1.0.0'
   gem 'spring', '1.2.0'
+  #gem 'guard-rails'
+  #gem 'guard-livereload'
+  #gem 'rack-livereload'
+  #gem 'guard-bundler'
 end
 
 

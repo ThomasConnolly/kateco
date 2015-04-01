@@ -6,8 +6,8 @@ class PagesController < ApplicationController
   def about
   end
   
-def contact
-    
+  def contact_us
+ end   
   
   def email
     @name = params[:name]
@@ -31,5 +31,5 @@ def contact
       redirect_to root_path, notice: "Your message was sent. Thank you."
     end
   end
-  end
 end
+

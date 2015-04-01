@@ -1,7 +1,8 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
- 
+
 
 html,body {
 height: 100%;
@@ -130,4 +131,7 @@ hr {
 }
 .clearright {
   clear: right;
+}
+.showcase {
+  min-height: 530px;
 }

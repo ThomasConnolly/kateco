@@ -1,0 +1,16 @@
+
+
+<div class="row">
+  <%= @manufacturers.each do |m| %>
+    <div class="col-md-3"><div class="showcase">
+    <%= image_tag(m.logo_url, class: "img-center", width: '80%') %><br>
+    <%= image_tag(m.composite_url, width: '100%') %>
+    </div></div>
+    <div class="col-md-3"><div class="showcase">
+   <h2><%= m.name %></h2>
+   <%= raw sanitize m.summary %><br>
+   <%= link_to 'Your Contacts', manufacturer_path(m) %>
+   </div></div>
+  
+   <% end %>
+   </div>

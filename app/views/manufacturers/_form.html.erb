@@ -1,0 +1,13 @@
+<%= simple_form_for @manufacturer do |m| %>
+
+  <%= m.input :name %>
+  <%= m.input :summary %>
+  <%= m.input :composite_url %>
+  <%= m.input :logo_url %>
+  <%= m.input :company_url %>
+  <%= m.input :contact %>
+  <%= m.input :contact_email %>
+  <%= m.input :contact_phone %>
+  <%= m.submit "submit", class: "btn btn-primary" %>
+  <% end %>
+ 
