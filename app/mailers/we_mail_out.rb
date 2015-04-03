@@ -1,2 +1,0 @@
-class WeMailOut < ApplicationMailer
-end

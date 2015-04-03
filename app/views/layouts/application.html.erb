@@ -3,22 +3,27 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= @title || "Kateco" %></title>
-    <%#= favicon_link_tag 'favicon.ico' %>
-    <%#= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link href="responsive.min.css" rel="stylesheet"
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <link href="responsive.css" rel="stylesheet"
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <meta name="google-site-verification" content="FKZjoLcPXo7UAFGevNN6dQWAXHaNXgykNTtdxQ_2fY0" />
 </head>
 <body>
 <div class="page">
-  <div class="container-fluid">
-    <div class="row-fluid">
+  <div class="body-container-fluid">
+    <div class="row">
+    <div class="col-l-12">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    </div></div>
+
      
     <%= render 'layouts/header' %>
-    </div>
+   
     <%= render 'layouts/nav' %>
   <%= yield %>
   <%= render 'layouts/footer' %>    

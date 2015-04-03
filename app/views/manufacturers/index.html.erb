@@ -1,16 +1,24 @@
-
+<% title("Home Page") %>
 
 <div class="row">
-  <%= @manufacturers.each do |m| %>
-    <div class="col-md-3"><div class="showcase">
-    <%= image_tag(m.logo_url, class: "img-center", width: '80%') %><br>
-    <%= image_tag(m.composite_url, width: '100%') %>
-    </div></div>
-    <div class="col-md-3"><div class="showcase">
-   <h2><%= m.name %></h2>
-   <%= raw sanitize m.summary %><br>
-   <%= link_to 'Your Contacts', manufacturer_path(m) %>
-   </div></div>
-  
-   <% end %>
-   </div>
+  <div class="col-lg-12 text-center">
+    <h1>Helping professionals with their<br> promotional and marketing needs<br><br></h1>
+  </div>     
+</div>
+
+<div class="clearall"></div>
+
+<div class="block-row-m-4">
+  <% @manufacturers.each do |m| %>
+    <div class="col-m-3" id="showcase"><br>
+      <%= image_tag(m.logo_url, class: "img-center", width: '80%') %><br>
+      <%= image_tag(m.composite_url, width: '100%') %>
+    </div>
+    <div class="col-m-3" id="showcase">
+      <h2><%= m.name %></h2>
+        <%= sanitize m.summary %>
+        <p class="link"> <%= link_to 'Your Contacts', manufacturer_path(m) %></p>
+     </div>
+  <% end %>
+  </div>
+<div class="clearall"></div>

@@ -1,8 +1,9 @@
 <% title("Contact us") %>
 <div class="row">
-  <div class="col-sm-8 col-sm-offset-2 text-center">
-    <h1><br>Helping professionals with their promotional and marketing needs</h1><br>
-    <%= simple_form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
+  <div class="col-s-8 offset-s-2 text-center">
+  
+    <h2>Send us an email</h2>
+    <%= simple_form_for @contact, :html => {:class => 'form-horizontal'} do |f| %>
       <%= f.input :name, :required => true %>
       <%= f.input :email, :required => true %>
       <%= f.input :message, :as => :text, :required => false, :input_html => {:rows => 10} %>
@@ -11,11 +12,13 @@
       </div>
       <div class="form-actions">
       <%= f.button :submit, 'Send message', :class => "btn btn-primary" %>
+      </div>
     <% end %>
-    </div>
+      <br>
     <h3> Call Kate at 425.412.0825
     </h3><br>
-    <p><strong><%= link_to "<<Back to Home page", root_path %></strong></p>
-</div>
+    <p><strong><%= link_to "<<Back to Home page", home_path %></strong></p>
+  </div>
+  </div>
 
-</div>
+

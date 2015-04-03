@@ -1,6 +1,6 @@
-class ManufacturersController < ApplicationController
+class AdminController < ApplicationController
+before_action :authorize
   
-
   def new
     @manufacturer = Manufacturer.new
   end
@@ -30,11 +30,15 @@ class ManufacturersController < ApplicationController
   def destroy
     @manufacturer = Manufacturer.find(params[:id])
   end
+
+
+
+
 private
 
   
   
   def manufacturer_params
-    params.require(:manufacturer).permit(:name, :summary, :composite_url, :logo_url, :company_url, :contact, :contact_email, :contact_phone, :sorting_letter ) 
+    params.require(:manufacturer).permit(:name, :summary, :composite_url, :logo_url, :company_url, :contact, :contact_email, :contact_phone, :sorting_letter) 
   end
 end

@@ -1,6 +1,7 @@
 <%= simple_form_for @manufacturer do |m| %>
 
   <%= m.input :name %>
+  <%= m.input :sort_letter %>
   <%= m.input :summary %>
   <%= m.input :composite_url %>
   <%= m.input :logo_url %>
@@ -8,7 +9,6 @@
   <%= m.input :contact %>
   <%= m.input :contact_email %>
   <%= m.input :contact_phone %>
-  <%= m.input :sort_letter %>
   <%= m.submit "submit", class: "btn btn-primary" %>
   <% end %>
  
