@@ -13,7 +13,7 @@ end
       if @user.password == params[:password]
         give_token
       else
-        redirect_to root_path
+        redirect_to admin_index_path
       end
     end
 
