@@ -5,10 +5,10 @@
     <%= image_tag @manufacturer.logo_url, width: "250", class: "img-center" %>
   
     <h2 class="center-text"><%= link_to "Go to the #{@manufacturer.name} Website", @manufacturer.company_url, target: "blank" %></h2>
-  
-    <h3 class="center-text">Your contact: <%= @manufacturer.contact %><br>
-      Email: <%= @manufacturer.contact_email %><br>
-      Phone: <%= @manufacturer.contact_phone %></h3>
+    <p>Your Contact: </p>
+    <h3 class="center-text"><%= @manufacturer.contact %></h3>
+      <p>Email: </p> <h3 class="center-text"><%= @manufacturer.contact_email %></h3>
+      <p>Phone: </p> <h3 class="center-text"><%= @manufacturer.contact_phone %></h3>
     </div>
   </div>
 </div>  
