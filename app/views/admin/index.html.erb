@@ -1,5 +1,10 @@
 <% title("Admin Page") %>
-
+<p>
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.name.titleize %>. |  <%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %> </strong></p>
+  
+</p>
+<% end %>
 <div class="row">
 
 <% @manufacturers.each do |m| %>

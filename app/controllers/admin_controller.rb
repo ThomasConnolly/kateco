@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-before_action :authorize
+  before_action :authenticate_user!
   
   def new
     @manufacturer = Manufacturer.new
@@ -12,8 +12,10 @@ before_action :authorize
   end
   
   def index
-    @manufacturers = Manufacturer.all   
-  end
+    @manufacturers = Manufacturer.all  
+    
+end
+
 
   def show
     @manufacturer = Manufacturer.find(params[:id])
