@@ -12,7 +12,7 @@ class AdminController < ApplicationController
   end
   
   def index
-    @manufacturers = Manufacturer.all  
+    @manufacturers = Manufacturer.all.order(:sort_letter) 
     
 end
 

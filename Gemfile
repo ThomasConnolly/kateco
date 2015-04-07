@@ -34,7 +34,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'spring', '1.2.0'
-  #gem 'guard-rails'
+  gem 'awesome_print'
   #gem 'guard-livereload'
   #gem 'rack-livereload'
   #gem 'guard-bundler'
