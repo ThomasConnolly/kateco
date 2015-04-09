@@ -22,12 +22,18 @@ end
   end
 
   def edit
-    @manufacturer = Manufacturer.find(params[:id])
+    @manufacturer = Manufacturer.find(params[:id]) 
   end
 
   def update
     @manufacturer = Manufacturer.find(params[:id])
+  if @manufacturer.update_attributes(manufacturer_params)
+    redirect_to :action => 'show', :id => @manufacturer
+  else
+    render 'edit'
+    end
   end
+
 
   def destroy
     @manufacturer = Manufacturer.find(params[:id])
