@@ -42,6 +42,6 @@ private
   
   
   def manufacturer_params
-    params.require(:manufacturer).permit(:name, :summary, :composite_url, :logo_url, :company_url, :contact, :contact_email, :contact_phone, :sorting_letter ) 
+    params.require(:manufacturer).permit(:name, :summary, :composite_url, :logo_url, :company_url, :contact, :contact_email, :contact_phone, :sort_letter ) 
   end
 end
