@@ -25,7 +25,7 @@
         <p>Order: <%= m.sort_letter %></p>
         </div>
       </div>
-       <p> <%= link_to 'Edit', edit_manufacturer_path(m) %> </p><br><br>
+       <p> <%= link_to 'Edit', edit_manufacturer_path(m) %> | <%= link_to "Delete", manufacturer_path(m), method: :delete, data: { confirm: 'Are you sure?'} %> </p><br><br>
     </div>
 <% end %>
     <%= link_to "Add a new company", new_manufacturer_path %>
