@@ -36,7 +36,7 @@ class ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.find(params[:id])
     @manufacturer.destroy
 
-    redirect_to admin_index_path
+    redirect_to home_path
   end
 
 
